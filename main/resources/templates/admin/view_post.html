@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymelwaf.org"
+>
+<dov th:replace="admin/header :: header"></dov>
+<body>
+<dov th:replace="admin/header :: navber"></dov>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 th:text="${post.title}"></h2>
+            <hr/>
+            <h4 th:text="${post.shortDescription}"></h4>
+            <hr/>
+            <div th:utext="${post.content}">
+            </div>
+
+        </div>
+    </div>
+</div>
+<dov th:replace="admin/footer :: footer"></dov>
+</body>
+</html>

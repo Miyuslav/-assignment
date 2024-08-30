@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymelwaf.org"
+>
+<div th:replace="admin/header :: header"></div>
+</head>
+<body>
+<div th:replace="admin/header :: navber"></div>
+<div class="container">
+        <div class="row">
+            <h1>Blog Menu</h1>
+        </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div ckass="form-group">
+                <form class="form-inline" th:action="@{/admin/posts/search}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+        <table class="table table table-striped table-hover table-bordered">
+            <thead class="table-dark">
+                <th style="width:10%">#</th>
+                <th style="width:10%">Post Title</th>
+                <th style="width:10%">POst Short Description</th>
+                <th style="width:10%">POst Created On</th>
+                <th style="width:10%">Action</th>
+            </thead>
+            <tbody>
+                <tr th:each="post, postStart : ${posts}">
+                    <td th:text="${postStart.count}">1</td>
+                    <td th:text="${post.title}">post title</td>
+                    <td th:text="${post.shortDescription}">post short description</td>
+                    <td th:text="${#temporals.format(post.createdOn, 'dd MMM YYYY')}">post created date</td>
+                    <td>
+                        <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}" class="btn btn-primary ">Edit</a>
+                        <a th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}" class="btn btn-danger ">Delete</a>
+                        <a th:href="@{/admin/posts/{postUrl}/view(postUrl=${post.url})}" class="btn btn-info ">View</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>
